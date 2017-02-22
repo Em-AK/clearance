@@ -86,9 +86,15 @@ module Clearance
     attr_accessor :sign_in_guards
 
     # The ActiveRecord class that represents users in your application.
-    # Defualts to `::User`.
+    # Defaults to `::User`.
     # @return [ActiveRecord::Base]
     attr_accessor :user_model
+
+    # The controller in your application every Clearance controller will
+    # inherit from.
+    # Defaults to `::ApplicationController`.
+    # @return [ActionController::Base]
+    attr_accessor :application_controller
 
     def initialize
       @allow_sign_up = true
@@ -107,6 +113,10 @@ module Clearance
 
     def user_model
       @user_model ||= ::User
+    end
+
+    def application_controller
+      @application_controller || ::ApplicationController
     end
 
     # Is the user sign up route enabled?
